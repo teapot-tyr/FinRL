@@ -12,54 +12,54 @@ import pandas as pd
 
 from finrl.config_tickers import DOW_30_TICKER
 
+_INITIAL_CONSTITUENTS_2026 = {
+    "AAPL", "AMGN", "AMZN", "AXP", "BA", "CAT", "CRM", "CSCO", "CVX", "DIS",
+    "GOOGL", "GS", "HD", "HON", "IBM", "JNJ", "JPM", "KO", "MCD", "MMM",
+    "MRK", "MSFT", "NKE", "NVDA", "PG", "SHW", "TRV", "UNH", "V", "WMT",
+}
+
+# _INITIAL_CONSTITUENTS_2014 = {
+#     "AXP","BA","CAT","CSCO","CVX","DD","DIS","GE","GS","HD","IBM","INTC","JNJ",
+#     "JPM","KO","MCD","MMM","MRK","MSFT","NKE","PFE","PG","T","TRV","UNH","UTX","V","VZ","WMT",
+#     "XOM",
+# }
+
 _INITIAL_CONSTITUENTS_2014 = {
-    "AXP",
-    "BA",
-    "CAT",
-    "CSCO",
-    "CVX",
-    "DD",
-    "DIS",
-    "GE",
-    "GS",
-    "HD",
-    "IBM",
-    "INTC",
-    "JNJ",
-    "JPM",
-    "KO",
-    "MCD",
-    "MMM",
-    "MRK",
-    "MSFT",
-    "NKE",
-    "PFE",
-    "PG",
-    "T",
-    "TRV",
-    "UNH",
-    "UTX",
-    "V",
-    "VZ",
-    "WMT",
-    "XOM",
+    "AXP", "BA", "CAT", "CSCO", "CVX", "DD", "DIS", "GE", "GS", "HD",
+    "IBM", "INTC", "JNJ", "JPM", "KO", "MCD", "MMM", "MRK", "MSFT", "NKE",
+    "PFE", "PG", "RTX", "T", "TRV", "UNH", "V", "VZ", "WMT", "XOM",
 }
 
 # Effective date, added tickers, removed tickers. Separate rows are used for
 # changes that share an effective date to keep each replacement auditable.
+# _DJIA_CHANGES = (
+#     ("2015-03-19", ("AAPL",), ("T",)),
+#     ("2017-09-01", ("DWDP",), ("DD",)),
+#     ("2018-06-26", ("WBA",), ("GE",)),
+#     ("2019-04-02", ("DOW",), ("DWDP",)),
+#     ("2020-04-06", ("RTX",), ("UTX",)),
+#     ("2020-08-31", ("AMGN",), ("XOM",)),
+#     ("2020-08-31", ("HON",), ("PFE",)),
+#     ("2020-08-31", ("CRM",), ("RTX",)),
+#     ("2024-02-26", ("AMZN",), ("WBA",)),
+#     ("2024-11-08", ("NVDA",), ("INTC",)),
+#     ("2024-11-08", ("SHW",), ("DOW",)),
+# )
+
 _DJIA_CHANGES = (
     ("2015-03-19", ("AAPL",), ("T",)),
-    ("2017-09-01", ("DWDP",), ("DD",)),
-    ("2018-06-26", ("WBA",), ("GE",)),
-    ("2019-04-02", ("DOW",), ("DWDP",)),
-    ("2020-04-06", ("RTX",), ("UTX",)),
+    # ("2017-09-01", ("DWDP",), ("DD",)),   # Skipped: DWDP is delisted; DD holds its Yahoo Finance history
+    ("2018-06-26", ("CVS",), ("GE",)),      # Replaced delisted WBA with CVS
+    ("2019-04-02", ("DOW",), ("DD",)),      # Replaced delisted DWDP with DD
+    # ("2020-04-06", ("RTX",), ("UTX",)),   # Skipped: UTX is already mapped to RTX from 2014
     ("2020-08-31", ("AMGN",), ("XOM",)),
     ("2020-08-31", ("HON",), ("PFE",)),
     ("2020-08-31", ("CRM",), ("RTX",)),
-    ("2024-02-26", ("AMZN",), ("WBA",)),
+    ("2024-02-26", ("AMZN",), ("CVS",)),    # Replaced delisted WBA with CVS
     ("2024-11-08", ("NVDA",), ("INTC",)),
     ("2024-11-08", ("SHW",), ("DOW",)),
 )
+
 
 DOW_30_HISTORICAL_UNIVERSE = tuple(
     sorted(

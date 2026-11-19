@@ -71,7 +71,7 @@ if if_using_a2c:
     model_a2c.set_logger(new_logger_a2c)
 
 trained_a2c = (
-    agent.train_model(model=model_a2c, tb_log_name="a2c", total_timesteps=20000)
+    agent.train_model(model=model_a2c, tb_log_name="a2c", total_timesteps=100)
     if if_using_a2c
     else None
 )
